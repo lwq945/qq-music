@@ -1,0 +1,17 @@
+#music-header {
+    display: flex;
+    align-items: center;
+    height: $header-height;
+    background: $header-background;
+    .music-logo {
+        display: block;
+        width: $logo-width;
+        height: $logo-height;
+        margin-left: 10px;
+        background-image: url(../images/logo.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        text-indent: -9999px; //隐藏文字
+    }
+}
+
