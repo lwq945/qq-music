@@ -1,0 +1,30 @@
+#tabs {
+    background: #fff;
+    .tab-list {
+        display: flex;
+        .tab-item {
+            position: relative;
+            flex-grow: 1;  
+            height: $tab-item-height;
+            line-height: $tab-item-height;
+            text-align: center;
+            font-size: 16px;
+
+            &.active {
+                color: $basis-color;
+                &::after {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    height: 2px;
+                    background: $basis-color;
+                }
+            }
+        }
+        
+        
+    }
+}
