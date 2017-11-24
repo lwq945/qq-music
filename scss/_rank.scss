@@ -1,0 +1,87 @@
+.rank-view {
+  margin: 10px;
+}
+.top-list {
+    
+    .top-item {
+        margin-bottom: 10px;
+        overflow: hidden;
+        background: #fff;
+        height: 100px;
+    }
+    .top-item-media {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        float: left;
+        img {
+            display: block;
+            width: 100px;
+            height: 100px;
+        }
+        .listen-count {
+            position: absolute;
+            left: 5px;
+            bottom: 7px;
+            display: block;
+            line-height: 12px;
+            color: #fff;
+            opacity: .6;
+            font-size: 9px;
+            z-index: 10;
+            .icon-listen {
+                display: block;
+                float: left;
+                width: 10px;
+                height: 10px;
+                background-position: 0 -50px;
+                margin-right: 3px;
+                background-image: url(../images/list_sprite.png);
+                background-repeat: no-repeat;
+                background-size: 24px 60px;
+                z-index: 10;
+            }
+        }
+    }
+
+    .top-item-songinfo {
+        position: relative;
+        padding: 7px 10px 8px 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        .top-item-title {
+            font-size: 16px;
+            color: #000;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .top-item-song {
+            font-size: 14px;
+            color: rgba(0,0,0,.5);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .song-name {
+            color: #000;
+            margin-left: 8px;
+            margin-right: 5px;
+        }
+        &::after {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            margin-top: -4px;
+            width: 6px;
+            height: 6px;
+            transform: rotate(315deg);
+            border-right: 1px solid #b2b2b2;
+            border-bottom: 1px solid #b2b2b2;
+        }
+    }
+}

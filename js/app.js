@@ -1,61 +1,36 @@
-(function(){
+import { Recommend } from './recommend.js'
+import { TopList } from './topList.js'
+import { Search } from './search.js'
+import { HotKey } from './hotkey.js'
+import { Player } from './player.js'
+import './tab.js'
 
-    fetch("./json/rec.json")
-    .then(res=>res.json())
-    .then(render)
-    
-    function render(json){
-        renderSlider(json.data.slider)
-        renderRadio(json.data.radioList)
-        renderHotsong(json.data.songList)
-    }
 
-    function renderSlider(slides){
-        slides = slides.map(slide=>{
-            return {
-                link:slide.linkUrl,image:slide.picUrl
-            }
-        })
-        new Slider({
-            el:document.querySelector("#slider"),
-            slides: slides    
-         })
-    }
+let recommend = new Recommend(document.querySelector('.rec-view')).getData()
+let topList = new TopList(document.querySelector('.rank-view')).getData()
+let search = new Search(document.querySelector('.search-view'))
+let hotkey = new HotKey(document.querySelector('.hot-result')).getData()
+let player = new Player(document.querySelector('#player'))
 
-    function renderRadio(list){
-        document.querySelector(".radio-lists .radio-wrapper").innerHTML = list.map(item=>
-            `<li class="radio-list-item">
-                <a href="javascript:;" class="list-main">
-                    <div class="list-media">
-                        <img src="${item.picUrl}">
-                        <span class="icon icon-play"></span>
-                    </div>
-                    <div class="list-info">
-                        <h3>${item.Ftitle}</h3>
-                    </div>      
-                </a>    
-            </li>`
-        ).join('')
-    }
+onHashChange()
+addEventListener('hashchange',onHashChange)
 
-   function renderHotsong(list){
-        document.querySelector(".hot-lists .hotsong-wrapper").innerHTML = list.map(item=>
-            `<li class="hotsong-list-item">
-                <a href="javascript:;" class="list-main">
-                    <div class="list-media">
-                        <img src="${item.picUrl}">
-                        <span class="listen-count">
-                            <i class="icon icon-listen"></i>
-                            ${(item.accessnum/10000).toFixed(1)}万
-                        </span>
-                        <span class="icon icon-play"></span>
-                    </div>
-                    <div class="list-info">
-                        <h3>${item.songListDesc}</h3>
-                        <p>${item.songListAuthor}</p>
-                    </div>      
-                </a>    
-            </li>`
-        ).join('')
-   }
-})()
+function onHashChange(){
+  let hash = location.hash
+  if(/^#player\?.+/.test(hash)){
+    let matches = hash.slice(hash.indexOf('?') + 1).match(/(\w+)=([^&]+)/g) //[^&]是匹配除了&字符，都可以匹配
+    let options = matches && matches.reduce((res,cur) => {  //数组变成对象{artist: "李荣浩", songid: "210265478", songname: "少年", albummid: "003PTZBu0IXqg2", duration: "301"}
+      let arr = cur.split('=')
+      res[arr[0]] = arr[1]
+      return res
+    },{})
+    player.play(options)
+  }else{
+    player.hide()
+  }
+}
+
+
+
+
+

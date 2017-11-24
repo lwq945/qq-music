@@ -5,11 +5,17 @@
 @import "slider";
 @import "tab";
 @import "helper";
+@import "rank";
+@import "search";
+@import "player";
 
 
 body {
-    font: 12px/1.5 "hiragino sans gb",arial;
+    font: 12px/1.4 "hiragino sans gb",arial;
     color: #555;
-    background: $body-background;
+    background: #f4f4f4;
 }
 
+.noscroll {
+  overflow: hidden;
+}
