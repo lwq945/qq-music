@@ -10,7 +10,7 @@ export class Player{
     this.$btnShow.addEventListener('click',this.show.bind(this))
     this.$el.addEventListener('click',this)
     this.progress = new Progress(this.$el.querySelector('.progress'))
-    this.lyrics = new Lyrics(this.$el.querySelector('.player-lyrics'))
+    this.lyrics = new Lyrics(this.$el.querySelector('.player-lyrics'),this.$audio)
     this.$audio = this.createAudio()
     this.fecting = false
   }
@@ -43,9 +43,11 @@ export class Player{
 
   play(options = {}){
     if(!options) return 
-
+    console.log(options)
     this.$el.querySelector('.song-name').innerText = options.songname
+    console.log(options.songname)
     this.$el.querySelector('.singer-name').innerText = options.artist
+    console.log(options.artist)
     this.progress.reset(options.duration)
 
     let url = albumCoverUrl(options.albummid)

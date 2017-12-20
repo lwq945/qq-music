@@ -21,7 +21,7 @@ function onHashChange(){
     let matches = hash.slice(hash.indexOf('?') + 1).match(/(\w+)=([^&]+)/g) //[^&]是匹配除了&字符，都可以匹配
     let options = matches && matches.reduce((res,cur) => {  //数组变成对象{artist: "李荣浩", songid: "210265478", songname: "少年", albummid: "003PTZBu0IXqg2", duration: "301"}
       let arr = cur.split('=')
-      res[arr[0]] = arr[1]
+      res[arr[0]] = decodeURIComponent(arr[1])
       return res
     },{})
     player.play(options)
